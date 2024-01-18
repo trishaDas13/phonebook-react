@@ -2,6 +2,7 @@ import AddPerson from './copms/AddPerson';
 import Information from './copms/Information';
 import Layout from "./copms/Layout";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { PersonProvider } from './context/Context'
 
 function App() {
    
@@ -24,7 +25,9 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <PersonProvider>
+        <RouterProvider router={router} />
+      </PersonProvider>
     </div>
   );
 }

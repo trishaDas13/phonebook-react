@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
+import { usePersonContext } from "../context/Context";
 
 const AddPerson = () => {
-    //todo: declaire state varriable
-    const [showForm, setShowForm] = useState(false);
-    const [list, setList] = useState([]);
-    const [formData, setFormData] = useState({
-        name: '',
-        dob: '',
-        aadharNumber: '',
-        phoneNumber: ''
-    });
+  const { personList, addPerson, deletePerson } = usePersonContext();
+
+
+  //todo: declaire state varriable
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    dob: "",
+    aadharNumber: "",
+    phoneNumber: "",
+  });
 
   //todo: to show the form
   const clickHandeller = () => {
@@ -20,96 +23,95 @@ const AddPerson = () => {
   //todo: to save the infomation
   const saveInformation = (e) => {
     e.preventDefault();
-    
-    //* calculating age based on dob
-    let personInfo = {...formData, age: new Date().getFullYear() - new Date(formData.dob).getFullYear()};
 
-    if(formData.aadharNumber < 10000000000){
-        alert('Adhaar number\'s length should be 12');
-        return;
+    //* calculating age based on dob
+    let personInfo = {
+      ...formData,
+      age: new Date().getFullYear() - new Date(formData.dob).getFullYear(),
+    };
+
+    if (formData.aadharNumber < 10000000000) {
+      alert("Adhaar number's length should be 12");
+      return;
     }
-    if(formData.phoneNumber < 100000000){
-        alert('Phone number\'s length should be 10');
-        return;
+    if (formData.phoneNumber < 100000000) {
+      alert("Phone number's length should be 10");
+      return;
     }
 
     //* set list empty after adding
-    setList([...list, personInfo]);
+    addPerson([...personList, personInfo]);
     setFormData({
-        name:'',
-        dob:'',
-        aadharNumber:'',
-        phoneNumber:'' 
+      name: "",
+      dob: "",
+      aadharNumber: "",
+      phoneNumber: "",
     });
 
     //*divisible form after save
-    setShowForm(false)
-    
+    setShowForm(false);
   };
 
   //todo: adding form data in the list when input changes
-  const handleChange = (e) =>{
-    setFormData({...formData,[e.target.name]: e.target.value})
-  }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   //todo: delete person from directory
-  const deletePerson = (index) =>{
-    let newList = [...list];
-    newList.splice(index, 1);
-    setList(newList);
-
-  }
+  const deletePersonHandller = (index) => {
+    deletePerson(index)
+  };
 
   return (
     <>
-
+      <h1>Add New Person</h1>
       <div className="add_person">
-        <table border={'1px solid'}>
+        <table border={"1px solid"}>
           <thead>
             <tr>
-                <th>Name</th>
-                <th>Date of birth</th>
-                <th>Aadhar Number</th>
-                <th>Mobile Number</th>
-                <th>Age</th>
-                <th>Actions</th>
+              <th>Name</th>
+              <th>Date of birth</th>
+              <th>Aadhar Number</th>
+              <th>Mobile Number</th>
+              <th>Age</th>
+              <th>Actions</th>
             </tr>
           </thead>
-        
-      <tbody>
-        {
-            list.map((person, index)=>{
-                return(
-                    <tr key={nanoid()}>
-                        <td>{person.name}</td>
-                        <td>{person.dob}</td>
-                        <td>{person.aadharNumber}</td>
-                        <td>{person.phoneNumber}</td>
-                        <td>{person.age}</td>
-                        <td><button onClick={()=>deletePerson(index)}>❌</button></td>
-                    </tr>
-                );
-            })
-        }
-      </tbody>
-      </table>
+
+          <tbody>
+            {personList.map((person, i) => {
+              return (
+                <tr key={nanoid()}>
+                  <td>{person[i].name}</td>
+                  <td>{person[i].dob}</td>
+                  <td>{person[i].aadharNumber}</td>
+                  <td>{person[i].phoneNumber}</td>
+                  <td>{person[i].age}</td>
+                  <td>
+                    <button onClick={() => deletePersonHandller(i)}>❌</button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
       {showForm && (
         <form>
-          <input 
+          <input
             type="text"
             name="name"
-            value={formData.name} 
-            placeholder="Name" 
+            value={formData.name}
+            placeholder="Name"
             required
-            onChange={(e)=>handleChange(e)}
+            onChange={(e) => handleChange(e)}
           />
-          <input 
+          <input
             type="date"
             name="dob"
-            value={formData.dob} 
+            value={formData.dob}
             required
-            onChange={(e)=>handleChange(e)} 
+            onChange={(e) => handleChange(e)}
           />
           <input
             type="number"
@@ -118,22 +120,18 @@ const AddPerson = () => {
             min={10000000000}
             placeholder="Adhar Number"
             required
-            onChange={(e)=>handleChange(e)}
+            onChange={(e) => handleChange(e)}
           />
-          <input 
-            type="number" 
+          <input
+            type="number"
             name="phoneNumber"
             value={formData.phoneNumber}
-            placeholder="Phone Number" 
+            placeholder="Phone Number"
             min={100000000}
             required
-            onChange={(e)=>handleChange(e)}
+            onChange={(e) => handleChange(e)}
           />
-          <input 
-            type="number" 
-            placeholder="Age" 
-            disabled 
-          />
+          <input type="number" placeholder="Age" disabled />
           <button onClick={(e) => saveInformation(e)}>Save</button>
         </form>
       )}
