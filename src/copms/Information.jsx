@@ -25,7 +25,8 @@ const Information = () => {
       />
       <button
         onClick={searchByNum}
-      >Search</button>
+      >🔍</button>
+      <div className="cont">
       {
         searchResults.length ? 
         (searchResults.map((item, i) =>{
@@ -42,6 +43,7 @@ const Information = () => {
           <div className="no-result">No Data Found!</div>
         )
       }
+      </div>
     </div>
   )
 }

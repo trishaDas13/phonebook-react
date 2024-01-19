@@ -2,7 +2,143 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+}
+nav {
+  background-color: rgb(72, 109, 179);
+  text-align: center;
+  padding: 0.7rem 1rem;
+  font-size: 22px;
+  color: white;
+  font-weight: 700;
+}
+.btns {
+  display: flex;
+  gap: 50px;
+  padding: 1rem;
+}
+.btns button {
+  border: 2px solid rgb(72, 109, 179);
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  background-color: rgba(72, 109, 179, 0.284);
+  font-weight: 700;
+  color: rgb(72, 109, 179);
+  cursor: pointer;
+}
+button:active {
+  transform: scale(0.96);
+}
+.btns button:hover {
+  background-color: rgb(72, 109, 179);
+  color: white;
+}
+.add_person{
+  padding: 1rem;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 100%;
+  text-align: center;
+}
+table th {
+  text-align: center;
+  padding: 8px;
+  border: 5px solid #fff;
+  background: rgb(72, 109, 179);
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 15px;
+}
+table td {
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+table tr {
+
+  color: #000000;
+  text-align: left;
+}
+.addPerson{
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  background-color: rgba(72, 109, 179);
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 80px;
+  right: 80px;
+}
+.addPerson:hover{
+  background-color: rgb(57, 82, 129)
+}
+
+form{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(72, 109, 179);
+  padding: 1rem;
+}
+input{
+  width: 200px;
+  height: 30px;
+  padding: 0.7rem;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px dashed black;
+  border-radius: 6px;
+}
+input::placeholder{
+  font-size: 16px;
+  font-weight: 600;
+}
+form button{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-size: 25px;
+}
+.information{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.information input{
+  position: relative;
+  width: 60%;
+  height: 40px;
+}
+.information button{
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  position: absolute;
+  top: 190px;
+  right: 300px;
+  cursor: pointer;
+  text-shadow: 0 0 10px grey;
+}
+.cards{
+  padding: 2rem;
+  box-shadow: 0 0 10px grey;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cont{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
 }

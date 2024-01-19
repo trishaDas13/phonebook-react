@@ -64,9 +64,9 @@ const AddPerson = () => {
 
   return (
     <>
-      <h1>Add New Person</h1>
+      <h3 style={{padding:'0rem 1rem'}}>Add New Person</h3>
       <div className="add_person">
-        <table border={"1px solid"}>
+        <table id='sample_table'>
           <thead>
             <tr>
               <th>Name</th>
@@ -132,10 +132,10 @@ const AddPerson = () => {
             onChange={(e) => handleChange(e)}
           />
           <input type="number" placeholder="Age" disabled />
-          <button onClick={(e) => saveInformation(e)}>Save</button>
+          <button onClick={(e) => saveInformation(e)}>💾</button>
         </form>
       )}
-      <button onClick={clickHandeller}>Add Person</button>
+      <button className='addPerson'onClick={clickHandeller}>Add Person</button>
     </>
   );
 };
